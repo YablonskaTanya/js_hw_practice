@@ -31,3 +31,23 @@
 // function incrementKeypressCounter() {
 //   keypressCounter += 1;
 // }
+// document.addEventListener("keydown", (event) => {
+//   event.preventDefault();
+
+//   if ((event.ctrlKey || event.metaKey) && event.code === "KeyS") {
+//     console.log("«Ctrl + s» or «Command + s» combo");
+//   }
+// });
+
+const refs = {
+  showMeButton: document.querySelector(".showMeButton"),
+  input: document.querySelector(".input"),
+  outputText: document.querySelector(".outputText"),
+};
+
+const onShowMeButtonClick = (event) => {
+  refs.outputText.textContent = refs.input.value;
+  refs.input.value = "";
+};
+
+refs.showMeButton.addEventListener("click", onShowMeButtonClick);
