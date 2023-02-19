@@ -39,15 +39,48 @@
 //   }
 // });
 
+// const refs = {
+//   showMeButton: document.querySelector(".showMeButton"),
+//   input: document.querySelector(".input"),
+//   outputText: document.querySelector(".outputText"),
+// };
+
+// const onShowMeButtonClick = (event) => {
+//   refs.outputText.textContent = refs.input.value;
+//   refs.input.value = "";
+// };
+
+// refs.showMeButton.addEventListener("click", onShowMeButtonClick);
+
 const refs = {
-  showMeButton: document.querySelector(".showMeButton"),
-  input: document.querySelector(".input"),
-  outputText: document.querySelector(".outputText"),
+  decreaseBtn: document.querySelector(".dicrease"),
+  increaseBtn: document.querySelector(" .increase"),
+  container: document.querySelector(".container"),
 };
 
-const onShowMeButtonClick = (event) => {
-  refs.outputText.textContent = refs.input.value;
-  refs.input.value = "";
-};
+const boxEl = document.createElement("div");
 
-refs.showMeButton.addEventListener("click", onShowMeButtonClick);
+boxEl.style.width = "40px";
+boxEl.style.height = "40px";
+boxEl.style.backgroundColor = "tomato";
+boxEl.classList.add("box");
+
+refs.container.append(boxEl);
+const box = document.querySelector(" .box");
+refs.increaseBtn.addEventListener("click", onIncreaseBtnClick);
+refs.decreaseBtn.addEventListener("click", onDecreaseBtnClick);
+
+function onDecreaseBtnClick(e) {
+  const width = Number.parseint(box.style.width);
+  const height = Number.parseInt(box.style.height);
+  box.style.width = "$(width - 10)px";
+  box.style.height = "$height - 10}px";
+  console.log(height);
+}
+function onIncreaseBtnClick(e) {
+  const width = Number.parseInt(box.style.width);
+  const height = Number - parseInt(box.style.height);
+  box.style.width = `$(width + 10)px`;
+  box.style.height = `$theight + 18)px`;
+  console.log(height);
+}
