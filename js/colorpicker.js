@@ -13,3 +13,60 @@ const colors = [
   { hex: "#795548", rgb: "121,85,72" },
   { hex: "#607d8b", rgb: "96,125,139" },
 ];
+
+const paletteContainer = document.querySelector(".js-palette");
+const cardsMarkup = createColorCardsMarkup(colors);
+
+paletteContainer.insertAdjacentHTML("beforeend", cardsMarkup);
+
+paletteContainer.addEventListener("click", onPaletteContainerClick);
+
+function createColorCardsMarkup(colors) {
+  return colors
+    .map(({ hex, rgb }) => {
+      return `
+    <div class="color-card">
+  <div
+    class="color-swatch"
+    data-hex="${hex}"
+    data-rgb="${rgb}"
+    style="background-color:${hex}"
+  ></div>
+  <div class="color-meta">
+    <p>НЕХ: ${hex}</p>
+    <p>RGB: ${rgb}</p>
+  </div>
+</div>
+    `;
+    })
+    .join("");
+}
+
+function onPaletteContainerClick(e) {
+  const isColorSwatchEl = e.target.classList.contains("color-swatch");
+  if (!isColorSwatchEl) {
+    return;
+  }
+
+  const swatchEl = e.target;
+  const parentColorCard = swatchEl.closest(".color-card");
+
+  removeActiveCardClass();
+  addActiveCardClass(parentColorCard);
+  setBodyBgColor(swatchEl.dataset.hex);
+}
+
+function setBodyBgColor(color) {
+  document.body.style.backgroundColor = color;
+}
+
+function removeActiveCardClass() {
+  const currentActiveCard = document.querySelector(".color-card.is-active");
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove("is-active");
+  }
+}
+
+function addActiveCardClass(card) {
+  card.classList.add("is-active");
+}
